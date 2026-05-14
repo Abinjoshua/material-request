@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Main Menu   -->
+    <menuitem id="menu_material_request_root" name="Material"/>
+    <!--    Sub Menu without action   -->
+    <menuitem id="menu_material_request_material" name="Material"
+              parent="menu_material_request_root"/>
+
+
+    <!--    Sub Menu with action    -->
+    <menuitem id="menu_material_request_material_request" name="Material Request"
+              parent="menu_material_request_material"
+              action="action_material_request"/>
+    <menuitem id="menu_material_request_request_products" name="Request Products"
+              parent="menu_material_request_material"
+              action="action_request_products"/>
+</odoo>

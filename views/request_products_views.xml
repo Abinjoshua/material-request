@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    create form view-->
+    <record id="request_products_views_form" model="ir.ui.view">
+        <field name="name">request.products.views.form</field>
+        <field name="model">material.request.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="purchase_type"/>
+                        <field name="quantity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    create list view    -->
+    <record id="material_request_views_list" model="ir.ui.view">
+        <field name="name">material.request.views.list</field>
+        <field name="model">material.request.product</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_id"/>
+                <field name="purchase_type"/>
+                <field name="quantity"/>
+            </list>
+        </field>
+    </record>
+    <!--    Window action sub-->
+    <record id="action_request_products" model="ir.actions.act_window">
+        <field name="name">Request Products</field>
+        <field name="res_model">material.request.product</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>
