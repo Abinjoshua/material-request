@@ -12,5 +12,8 @@
         "security/security.xml",
         "views/material_request_views.xml",
         "views/request_products_views.xml",
+        "views/purchase_order_views.xml",
+        "views/stock_picking_views.xml",
+        "views/managers_request_views.xml",
          "views/material_menu_views.xml"],
 }

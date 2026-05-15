@@ -5,6 +5,8 @@
     <!--    Sub Menu without action   -->
     <menuitem id="menu_material_request_material" name="Material"
               parent="menu_material_request_root"/>
+    <menuitem id="menu_material_request_managers_request" name="Managers Request"
+              parent="menu_material_request_root"/>
 
 
     <!--    Sub Menu with action    -->
@@ -14,4 +16,7 @@
     <menuitem id="menu_material_request_request_products" name="Request Products"
               parent="menu_material_request_material"
               action="action_request_products"/>
+    <menuitem id="menu_material_request_managers_request_managers_request" name="Managers Request"
+              parent="menu_material_request_managers_request"
+              action="action_managers_request"/>
 </odoo>

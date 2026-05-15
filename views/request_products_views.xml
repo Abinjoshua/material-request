@@ -11,6 +11,7 @@
                         <field name="product_id"/>
                         <field name="purchase_type"/>
                         <field name="quantity"/>
+                        <field name="destination_location_id"/>
                     </group>
                 </sheet>
             </form>
@@ -25,6 +26,7 @@
                 <field name="product_id"/>
                 <field name="purchase_type"/>
                 <field name="quantity"/>
+                <field name="destination_location_id"/>
             </list>
         </field>
     </record>

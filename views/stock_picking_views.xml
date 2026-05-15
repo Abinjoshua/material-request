@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--    Form View-->
+    <record id="stock_picking_views_form" model="ir.ui.view">
+        <field name="name">stock.picking.views.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="material_request"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

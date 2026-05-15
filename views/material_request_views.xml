@@ -3,36 +3,76 @@
     <!--    create form view-->
     <record id="material_request_views_form" model="ir.ui.view">
         <field name="name">material.request.views.form</field>
-        <field name="model">material</field>
+        <field name="model">material.request</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_request_material" type="object" string="Request" class="btn-primary"/>
+                    <button name="action_request_material" type="object" string="Request" class="btn-primary" invisible="state != 'draft'" groups="material_request.group_material_user"/>
+                    <button name="action_manager_approve" type="object" string="Manager Approve" class="btn-primary" invisible="state != 'user_requested'" groups="material_request.group_material_manager"/>
+                    <button name="action_head_approve" type="object" string="Head Approve" class="btn-primary" invisible="state != 'manager_approved'" groups="material_request.group_material_head"/>
+                    <button name="action_head_reject" type="object" string="Head Reject" class="btn-primary" invisible="state != 'manager_approved'" groups="material_request.group_material_head"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                 </header>
                 <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                                type="object"
+                                icon="fa-outdent"
+                                name="action_get_purchase_order">
+                            <field string="Purchase Orders" name="po_count"
+                                   widget="statinfo"/>
+                        </button>
+                        <button
+                                type="object"
+                                icon="fa-outdent"
+                                name="action_get_internal_transfer">
+                            <field string="Internal Transfers" name="internal_transfer_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Done" bg_color="text-bg-success"
+                            invisible="state != 'done'"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="state != 'head_rejected'"/>
                     <group>
-                        <field name="name"/>
-                        <field name="product_id" widget="many2many_tags"/>
+                        <group>
+                        <field name="name" readonly="state == 'done'"/>
+                        </group>
+                        <group>
+                        <field name="operation_type_id" readonly="state == 'done'"/>
+                        </group>
+                        <notebook>
+                            <page string="Material Request Products">
+                                <field name="product_ids" readonly="state == 'done'">
+                                    <list editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="purchase_type"/>
+                                        <field name="quantity"/>
+                                        <field name="destination_location_id"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
                     </group>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>
     <!--    create list view    -->
     <record id="material_request_views_list" model="ir.ui.view">
         <field name="name">material.request.views.list</field>
-        <field name="model">material</field>
+        <field name="model">material.request</field>
         <field name="arch" type="xml">
             <list>
-                <field name="product_id"/>
+                <field name="name"/>
+                <field name="product_ids"/>
             </list>
         </field>
     </record>
     <!--    Window action sub-->
     <record id="action_material_request" model="ir.actions.act_window">
         <field name="name">Material Request</field>
-        <field name="res_model">material</field>
+        <field name="res_model">material.request</field>
         <field name="view_mode">list,form,kanban</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create your first Material Request</p>

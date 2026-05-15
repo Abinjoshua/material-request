@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    create list view    -->
+    <record id="managers_request_views_list" model="ir.ui.view">
+        <field name="name">material.request.views.list</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+    <!--    Window action sub-->
+    <record id="action_managers_request" model="ir.actions.act_window">
+        <field name="name">Managers Request</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '==', 'manager_approved')]</field>
+    </record>
+</odoo>
